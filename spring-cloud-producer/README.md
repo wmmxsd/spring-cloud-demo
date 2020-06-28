@@ -57,7 +57,8 @@ public class HelloWorldController {
 }
 ```
 ### 4. 配置文件添加配置
-集群版配置（规模为两台，需要配置2个application.yml）
+集群版配置(规模为两台，需要配置2个application.yml)
+
 _application-peer1.yml_
 ```yaml
 spring:
