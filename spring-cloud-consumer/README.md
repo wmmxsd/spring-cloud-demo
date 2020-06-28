@@ -1,13 +1,15 @@
-# Spring Cloud Producer
-## 服务提供方
-- 向服务中心注册并定时发送心跳
+# Spring Cloud Consumer
+
+## 服务消费方
+- 调用远程服务的服务消费方
 ## 使用步骤
+
 ### 1. pom中添加依赖
 ```xml
 <properties>
-    <java.version>1.8</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
     <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
 </properties>
 
@@ -19,6 +21,10 @@
     <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-openfeign</artifactId>
     </dependency>
     <dependency>
         <groupId>org.springframework.boot</groupId>

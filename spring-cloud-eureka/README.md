@@ -6,7 +6,8 @@
 - 故障转移功能。定时查看各个客户端，查询没有反应，则会从服务器的注册列表中删除
 ## 使用步骤
 ### 1. pom中添加依赖
-```
+
+```xml
 <properties>
     <java.version>1.8</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -15,10 +16,6 @@
 </properties>
 
 <dependencies>
-    <!--<dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter</artifactId>
-    </dependency>-->
     <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
@@ -32,11 +29,17 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-test</artifactId>
         <scope>test</scope>
+        <exclusions>
+            <exclusion>
+                <groupId>org.junit.vintage</groupId>
+                <artifactId>junit-vintage-engine</artifactId>
+            </exclusion>
+        </exclusions>
     </dependency>
 </dependencies>
 ```
 ### 2. 启动类中添加`@EnableEurekaServer`注解
-```
+```java
 @SpringBootApplication
 @EnableEurekaServer
 public class SpringCloudEurekaApplication {
@@ -49,7 +52,7 @@ public class SpringCloudEurekaApplication {
 ```
 ### 3. 配置文件添加配置
 单机版配置（`application.yml`）
-```
+```yaml
 spring:
   application:
     name: spring-cloud-eureka
@@ -71,7 +74,7 @@ eureka:
 集群版配置（需要配置三个application.yml）
 
 _application-peer1.yml_
-```
+```yaml
 spring:
   application:
     name: spring-cloud-eureka
@@ -99,7 +102,7 @@ eureka:
       defaultZone: http://peer2:8002/eureka/,http://peer3:8003/eureka/
 ```
 _application-peer2.yml_
-```
+```yaml
 spring:
   application:
     name: spring-cloud-eureka
@@ -127,7 +130,7 @@ eureka:
       defaultZone: http://peer1:8001/eureka/,http://peer3:8003/eureka/
 ```
 _application-peer3.yml_
-```
+```yaml
 spring:
   application:
     name: spring-cloud-eureka
@@ -155,7 +158,8 @@ eureka:
 ### 4. host文件修改
 打开`C:\Windows\System32\drivers\etc\hosts`<br>
 末尾加上
-```
+
+```text
 127.0.0.1 peer1
 127.0.0.1 peer2
 127.0.0.1 peer3
@@ -166,7 +170,7 @@ eureka:
 3. cd到jar包目录
 4. 单机版启动：执行`java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar`/直接在ide中启动	
 5. 集群版启动
-```
+```shell script
 java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer1
 java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer2
 java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer3

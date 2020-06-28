@@ -18,6 +18,6 @@ public class ConsumerController {
 
     @GetMapping("helloWorld/{name}")
     public String consumer(@PathVariable String name) {
-        return remote.index(name);
+        return remote.hello(name);
     }
 }
