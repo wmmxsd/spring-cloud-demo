@@ -153,22 +153,22 @@ eureka:
       defaultZone: http://peer1:8001/eureka/,http://peer2:8002/eureka/
 ```
 ### 4. host文件修改
-	打开`C:\Windows\System32\drivers\etc\hosts`
-	加上
-	```
-	127.0.0.1 peer1
-	127.0.0.1 peer2
-	127.0.0.1 peer3
-	```
+打开`C:\Windows\System32\drivers\etc\hosts`<br>
+末尾加上
+```
+127.0.0.1 peer1
+127.0.0.1 peer2
+127.0.0.1 peer3
+```
 ### 5. 运行
-	1. cd到`pom.xml`所在目录
- 	2. 执行``mvn clean package`**`打包
-	3. cd到jar包目录
-	4. 单机版启动：执行`java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar`/直接在ide中启动	
-	5. 集群版启动
-	```
-	java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer1
-	java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer2
-	java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer3
-	```
+1. cd到`pom.xml`所在目录
+2. 执行`mvn clean package`打包
+3. cd到jar包目录
+4. 单机版启动：执行`java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar`/直接在ide中启动	
+5. 集群版启动
+```
+java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer1
+java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer2
+java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer3
+```
 ### 6. 浏览器输入：<http://localhost:8001/>, General Info中`registered-replicas`和`available-replicas`的值为`http://peer1:8001/eureka/,http://peer2:8002/eureka/,http://peer3:8003/eureka/`
