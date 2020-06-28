@@ -5,7 +5,7 @@
 - 作为轮询负载均衡器。在服务消费者调用服务生产者时采用负载均衡的方式来实现调用
 - 故障转移功能。定时查看各个客户端，查询没有反应，则会从服务器的注册列表中删除
 ## 使用步骤
-###1. pom中添加依赖
+### 1. pom中添加依赖
 ```
 <properties>
     <java.version>1.8</java.version>
@@ -35,7 +35,7 @@
     </dependency>
 </dependencies>
 ```
-###2. 启动类中添加`@EnableEurekaServer`注解，
+### 2. 启动类中添加`@EnableEurekaServer`注解
 ```
 @SpringBootApplication
 @EnableEurekaServer
@@ -47,7 +47,7 @@ public class SpringCloudEurekaApplication {
 
 }
 ```
-###3. 配置文件添加配置
+### 3. 配置文件添加配置
 单机版配置（`application.yml`）
 ```
 spring:
@@ -152,7 +152,7 @@ eureka:
       #集群模式配置
       defaultZone: http://peer1:8001/eureka/,http://peer2:8002/eureka/
 ```
-###4. host文件修改
+### 4. host文件修改
 	打开`C:\Windows\System32\drivers\etc\hosts`
 	加上
 	```
@@ -160,7 +160,7 @@ eureka:
 	127.0.0.1 peer2
 	127.0.0.1 peer3
 	```
-###5. 运行
+### 5. 运行
 	1. cd到`pom.xml`所在目录
  	2. 执行``mvn clean package`**`打包
 	3. cd到jar包目录
@@ -171,4 +171,4 @@ eureka:
 	java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer2
 	java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer3
 	```
-###6. 浏览器输入：<http://localhost:8001/>, General Info中`registered-replicas`和`available-replicas`的值为`http://peer1:8001/eureka/,http://peer2:8002/eureka/,http://peer3:8003/eureka/`
+### 6. 浏览器输入：<http://localhost:8001/>, General Info中`registered-replicas`和`available-replicas`的值为`http://peer1:8001/eureka/,http://peer2:8002/eureka/,http://peer3:8003/eureka/`
