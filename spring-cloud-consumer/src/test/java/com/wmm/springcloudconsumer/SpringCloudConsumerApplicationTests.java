@@ -1,10 +1,10 @@
-package com.wmm.springclouddemo;
+package com.wmm.springcloudconsumer;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringCloudDemoApplicationTests {
+class SpringCloudConsumerApplicationTests {
 
 	@Test
 	void contextLoads() {

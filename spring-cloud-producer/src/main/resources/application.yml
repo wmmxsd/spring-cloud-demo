@@ -2,6 +2,11 @@ spring:
   application:
     name: spring-cloud-producer
 server:
+  #同时运行多个相同服务提供者的实例来看负载均衡的效果可以这样操作：
+  #1.mvn install package
+  #2 cd到jar包的目录，然后执行java -jar spring-cloud-producer-0.0.1-SNAPSHOT.jar
+  #3 修改port为其他值，然后修改HelloWorldController的index方法的返回值，以此来区分服务消费者远程调用了那个实例。
+  #4 依次执行步骤1和2，然后启动spring应用名为spring-cloud-consumer的工程，在浏览器输入http://localhost:port/helloWorld/test并且多次回车查看浏览器显示，正常情况下每次回车都会输出不同内容，因为是自动轮询。
   port: 9001
 eureka:
   client:
