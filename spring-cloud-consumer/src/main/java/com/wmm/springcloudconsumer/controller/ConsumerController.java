@@ -2,9 +2,12 @@ package com.wmm.springcloudconsumer.controller;
 
 import com.wmm.springcloudconsumer.remote.HelloWorldRemote;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * @author wangmingming160328
@@ -13,11 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class ConsumerController {
+    private HelloWorldRemote helloWorldRemote;
+
     @Autowired
-    private HelloWorldRemote remote;
+    public void setRemote(HelloWorldRemote helloWorldRemote) {
+        this.helloWorldRemote = helloWorldRemote;
+    }
 
     @GetMapping("helloWorld/{name}")
     public String consumer(@PathVariable String name) {
-        return remote.hello(name);
+        return helloWorldRemote.hello(name);
     }
 }

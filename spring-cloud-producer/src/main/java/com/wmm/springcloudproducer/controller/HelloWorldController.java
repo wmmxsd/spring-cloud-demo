@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloWorldController {
     @GetMapping("/hello")
     public String index(@RequestParam String name) {
-        //return "hello " + name + "，this is first message";
-        return "hello " + name + "，this is second message";
+        return "hello " + name + "，this is first message";
+//        return "hello " + name + "，this is second message";
     }
 }

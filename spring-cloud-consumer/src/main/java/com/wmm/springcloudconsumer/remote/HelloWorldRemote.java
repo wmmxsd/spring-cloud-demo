@@ -22,5 +22,5 @@ public interface HelloWorldRemote {
      * @return 字符串
      */
     @GetMapping("/hello")
-    String hello(@RequestParam String name);
+    String hello(@RequestParam(value = "name") String name);
 }

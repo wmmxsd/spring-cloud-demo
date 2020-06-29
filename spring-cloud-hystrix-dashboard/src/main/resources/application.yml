@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: spring-cloud-hystrix-dashboard
+server:
+  port: 10000
+eureka:
+  client:
+    server-url:
+      defaultZone: http://localhost:8001/eureka/

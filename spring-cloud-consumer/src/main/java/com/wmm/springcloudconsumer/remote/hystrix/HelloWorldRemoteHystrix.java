@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestParam;
  * <p>2、Fallback：当请求后端服务出现异常的时候, 可以使用fallback方法返回的值</p>
  * <p>3、资源隔离：在Hystrix中, 主要通过线程池来实现资源隔离. 通常在使用的时候我们会根据调用的远程服务划分出多个线程池
  * 维护多个线程池会对系统带来额外的性能开销. 如果是对性能有严格要求而且确信自己调用服务的客户端代码不会出问题的话, 可以使用Hystrix的信号模式(Semaphores)来隔离资源</p>
- * @author wangmingming160328
+ * @author wangmingming
  * @Description HelloWorldRemote的熔断器
  * @date @2020/6/29 10:47
  */
 @Component
 public class HelloWorldRemoteHystrix implements HelloWorldRemote {
     @Override
-    public String hello(@RequestParam String name) {
+    public String hello(@RequestParam(value = "name") String name) {
         return name +" send failed";
     }
 }

@@ -11,3 +11,8 @@ feign:
   hystrix:
     #开启hystrix熔断器
     enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
