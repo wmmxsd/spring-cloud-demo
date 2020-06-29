@@ -1,5 +1,6 @@
 package com.wmm.springcloudconsumer.remote;
 
+import com.wmm.springcloudconsumer.remote.hystrix.HelloWorldRemoteHystrix;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @Description 远程调用服务名为spring-cloud-producer的url为/hello的方法
  * @date @2020/6/28 16:33
  */
-@FeignClient(name = "spring-cloud-producer")
+@FeignClient(name = "spring-cloud-producer", fallback = HelloWorldRemoteHystrix.class)
 public interface HelloWorldRemote {
     /**
      *  path必须和远程服务提供方中的url、请求方法种类、参数一致
