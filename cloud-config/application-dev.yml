@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: spring-cloud-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri:
+          search-paths: https://github.com/ityouknow/spring-cloud-starter/
+          username: wmmxsd@126.com
+          password: w7610232mm
+
+server:
+  port: 9051
