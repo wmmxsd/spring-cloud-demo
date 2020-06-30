@@ -8,8 +8,8 @@ spring:
         git:
           uri: https://github.com/wmmxsd/spring-cloud-demo
           search-paths: cloud-config
-          username: wmmxsd@126.com
-          password: w7610232mm
+          username: GitHub账号
+          password: GitHub密码
 
 #该应用端口号
 server:
