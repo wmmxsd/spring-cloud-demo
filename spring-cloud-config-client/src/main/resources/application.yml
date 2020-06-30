@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: spring-cloud-config-client
+
+server:
+  port: 9052
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
+
+

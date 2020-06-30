@@ -1,6 +1,7 @@
 spring:
   application:
     name: spring-cloud-config-server
+  #Spring Cloud Config Server端配置
   cloud:
     config:
       server:
@@ -10,5 +11,12 @@ spring:
           username: wmmxsd@126.com
           password: w7610232mm
 
+#该应用端口号
 server:
   port: 9051
+
+#注册中心客户端配置
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
