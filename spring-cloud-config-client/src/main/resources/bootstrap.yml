@@ -3,5 +3,40 @@ spring:
     config:
       name: application
       profile: dev
-      uri: http://localhost:9051
       label: master
+      discovery:
+        enabled: true
+        service-id: spring-cloud-config-server
+    stream:
+      default:
+        producer:
+          #解决kafka生产者发送消息报java.lang.IllegalArgumentException: Magic v1 does not support record headers错误
+          headerMode: embeddedHeaders
+        consumer:
+          headerMode: embeddedHeaders
+    bus:
+      refresh:
+        enabled: false
+      trace:
+        enabled: true
+
+  #指定kafka的地址
+  kafka:
+    bootstrap-servers: 192.168.119.25:9092
+    producer:
+      key-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      key-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
+
+#暴露端口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'   #refresh
