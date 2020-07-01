@@ -1,8 +1,18 @@
 spring:
   application:
-    name: spring-cloud-consumer
+    name: spring-cloud-zuul
 server:
-  port: 9002
+  port: 9060
+zuul:
+  routes:
+    producer:
+      path: /producer/**
+      serviceId: spring-cloud-producer
+      #访问http://localhost:9060/producer/hello?name=2 返回hello 2，this is first message
+    consumer:
+      path: /consumer/**
+      serviceId: spring-cloud-consumer
+      #访问http://localhost:9060/consumer/helloWorld/2 返回hello 2，this is first message
 eureka:
   client:
     service-url:
@@ -14,12 +24,4 @@ eureka:
     prefer-ip-address: true #以IP地址注册到服务中心
     lease-renewal-interval-in-seconds: 5      # 心跳时间，即服务续约间隔时间（缺省为30s）
     lease-expiration-duration-in-seconds: 15  # 发呆时间，即服务续约到期时间（缺省为90s）
-feign:
-  hystrix:
-    #开启hystrix熔断器
-    enabled: true
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
+

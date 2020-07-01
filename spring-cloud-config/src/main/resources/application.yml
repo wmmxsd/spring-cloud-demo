@@ -41,7 +41,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8001/eureka/
+      defaultZone: http://localhost:8001/eureka/,http://localhost:8002/eureka/,http://localhost:8003/eureka/
     healthcheck:
       enabled: true                           # 开启健康检查（依赖spring-boot-starter-actuator）
   instance:
