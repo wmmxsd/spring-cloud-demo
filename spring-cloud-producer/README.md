@@ -69,9 +69,16 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8001/eureka/
+      defaultZone: http://localhost:8001/eureka/,http://localhost:8002/eureka/,http://localhost:8003/eureka/
+    healthcheck:
+      enabled: true                           # 开启健康检查（依赖spring-boot-starter-actuator）
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true #以IP地址注册到服务中心
+    lease-renewal-interval-in-seconds: 5      # 心跳时间，即服务续约间隔时间（缺省为30s）
+    lease-expiration-duration-in-seconds: 15  # 发呆时间，即服务续约到期时间（缺省为90s）
 ```
-_application-peer2.yml_
+_application-peer2.yml_(暂时用不到，服务消费方调用服务提供方集群时会用到)
 ```yaml
 spring:
   application:
@@ -81,14 +88,19 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8001/eureka/
+      defaultZone: http://localhost:8001/eureka/,http://localhost:8002/eureka/,http://localhost:8003/eureka/
+    healthcheck:
+      enabled: true                           # 开启健康检查（依赖spring-boot-starter-actuator）
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true #以IP地址注册到服务中心
+    lease-renewal-interval-in-seconds: 5      # 心跳时间，即服务续约间隔时间（缺省为30s）
+    lease-expiration-duration-in-seconds: 15  # 发呆时间，即服务续约到期时间（缺省为90s）
 ```
 ### 5. 运行
 1. cd到`pom.xml`所在目录
 2. 执行`mvn clean package`打包
 3. cd到jar包目录
 4. 执行`java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer1`，启动一个服务生产者实例
-5. 修改`HelloWorldController`的`index`方法的返回值，以此来区分服务消费者远程调用了那个实例
-6. 依次执行步骤1、2、3，然后执行`java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer2`，启动第二个服务生产者实例
-### 6. 浏览器输入：<http://localhost:8001/>, 效果入下图所示：
-![not found](https://github.com/wmmxsd/spring-cloud-demo/blob/master/images/demo1.jpg)
+### 6. 测试
+浏览器输入：<http://localhost:9001/hello?name=test>, 页面会显示`hello test，this is first message`

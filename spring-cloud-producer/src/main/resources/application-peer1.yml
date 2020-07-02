@@ -1,17 +1,8 @@
 spring:
   application:
-    name: node2
+    name: spring-cloud-producer
 server:
-  port: 9006
-feign:
-  hystrix:
-    #开启hystrix熔断器
-    enabled: true
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
+  port: 9001
 eureka:
   client:
     service-url:

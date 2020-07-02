@@ -45,7 +45,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!--hystrix-dashboard-->
+		<!--hystrix熔断器部分 begin-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -58,6 +58,7 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
 		</dependency>
+		<!--hystrix熔断器部分 end-->
     </dependencies>
 
 	<dependencyManagement>

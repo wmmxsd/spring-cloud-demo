@@ -1,3 +1,6 @@
 .idea/
 */.idea/
 */.mvn
+*/gradle/
+*/.gradle/
+*/gradle*
